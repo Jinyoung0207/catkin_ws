@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+	<!-- Include the MAVROS node with SITL and Gazebo -->
+	<include file="$(find px4)/launch/multi_uav_mavros_sitl.launch">
+	</include>
+
+	<!--Our node to control the drone -->
+	<node pkg="offboard_cpp" type="velocity_traj" name="velocity_traj" required="true" output="screen" />
+	<node pkg="offboard_cpp" type="formation_node" name="formation_node" required="true" output="screen" />
+	<!--node pkg="offboard_cpp" type="send_traj" name="send_traj" required="true" output="screen" /-->
+
+    <node pkg="offboard_cpp" type="error" name="error" required="true" output="screen" /> <!-- set_vel 과 mav_vel차이 보기 위한 것-->
+
+
+    <node pkg="offboard_cpp" type="velocity_pub0" name="velocity_pub0" required="true" output="screen" />
+	<node pkg="offboard_cpp" type="velocity_pub1" name="velocity_pub1" required="true" output="screen" />
+	<node pkg="offboard_cpp" type="velocity_pub2" name="velocity_pub2" required="true" output="screen" />
+	<node pkg="offboard_cpp" type="velocity_pub3" name="velocity_pub3" required="true" output="screen" />
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find offboard_cpp)/rviz.rviz" />
+</launch>
