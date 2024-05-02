@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="ns0" default="UAV0"/>
+    <!-- UAV0 -->
+    <group ns="$(arg ns0)">
+        <!-- MAVROS and vehicle configs -->
+        <arg name="ID" value="0"/>
+        <!--SITL-->
+        <arg name="fcu_url" default="udp://:14540@localhost:14580"/>
+        <!--HW-->
+        <!--arg name="fcu_url" default="/dev/ttyACM0"/-->
+        <!-- MAVROS -->
+        <include file="$(find mavros)/launch/px4.launch">
+            <arg name="fcu_url" value="$(arg fcu_url)"/>
+            <arg name="gcs_url" value=""/>
+            <arg name="tgt_system" value="$(eval 1 + arg('ID'))"/>
+            <arg name="tgt_component" value="1"/>
+        </include>
+    </group>
+
+</launch>

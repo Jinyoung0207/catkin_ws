@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+	<!-- Include the MAVROS node with SITL and Gazebo -->
+	<include file="$(find px4)/launch/mavros_posix_sitl.launch">
+	</include>
+
+	<!--node pkg="hw_test" type="vel_x" name="vel_x" required="true" output="screen" /-->
+	<node pkg="hw_test" type="vel_x_diff" name="vel_x_diff" required="true" output="screen" />
+
+</launch>
+
