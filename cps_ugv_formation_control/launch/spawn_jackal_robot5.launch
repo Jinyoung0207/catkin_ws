@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="gui"       default="true"/>
+  <arg name="rviz"      default="base"/>
+  <arg name="config"    default="base" />
+  <arg name="ns1"       default="UGV1"/>
+  <arg name="ns2"       default="UGV2"/>
+  <arg name="ns3"       default="UGV3"/>
+  <arg name="ns4"       default="UGV4"/>
+  <arg name="ns5"       default="UGV5"/>
+  <arg name="world_file" value="$(find cps_ugv_formation_control)/world/jackal_robot5.world"/>
+
+  <!-- Start Gazebo. -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug" value="false"/>
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="world_name" value="$(arg world_file)"/>
+  </include>
+
+  <!-- Spawn Robot 1 -->
+  <include file="$(find cps_ugv_formation_control)/launch/base_jackal.launch">
+    <arg name="ns"            value="$(arg ns1)"/>
+    <arg name="config"        value="$(arg config)"/>
+    <arg name="x"             value="0.0"/>
+    <arg name="y"             value="0.0"/>
+  </include>
+
+  <!-- Spawn Robot 2 -->
+  <include file="$(find cps_ugv_formation_control)/launch/base_jackal.launch">
+    <arg name="ns"            value="$(arg ns2)"/>
+    <arg name="config"        value="$(arg config)"/>
+    <arg name="x"             value="0.0"/>
+    <arg name="y"             value="-1.0"/>
+  </include>
+
+  <!-- Spawn Robot 3 -->
+  <include file="$(find cps_ugv_formation_control)/launch/base_jackal.launch">
+    <arg name="ns"            value="$(arg ns3)"/>
+    <arg name="config"        value="$(arg config)"/>
+    <arg name="x"             value="0.0"/>
+    <arg name="y"             value="1.0"/>
+  </include>
+
+  <!-- Spawn Robot 4 -->
+  <include file="$(find cps_ugv_formation_control)/launch/base_jackal.launch">
+    <arg name="ns"            value="$(arg ns4)"/>
+    <arg name="config"        value="$(arg config)"/>
+    <arg name="x"             value="0.0"/>
+    <arg name="y"             value="-2.0"/>
+  </include>
+
+  <!-- Spawn Robot 5 -->
+  <include file="$(find cps_ugv_formation_control)/launch/base_jackal.launch">
+    <arg name="ns"            value="$(arg ns5)"/>
+    <arg name="config"        value="$(arg config)"/>
+    <arg name="x"             value="0.0"/>
+    <arg name="y"             value="2.0"/>
+  </include>
+
+  
+
+  <!-- View in RVIZ. 
+  <group if="$(arg rviz)">
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find bigbot_base)/rviz/APF.rviz" >
+    </node>
+  </group>-->
+
+</launch>

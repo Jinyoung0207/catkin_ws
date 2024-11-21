@@ -1,0 +1,5 @@
+scale_nor: 3.0
+set_vel: 0.2
+rate: 10.0
+uav_z_max: 2.0
+frame_id: "odom"

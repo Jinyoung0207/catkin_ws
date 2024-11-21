@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+<launch>
+    <arg name="config_file" default="$(find my_robot_pkg)/config/mpc_ros1.yaml"/>
+
+    <node
+        pkg="my_robot_pkg"
+        type="mpc_ros1_node"
+        name="mpc_ros1_node"
+        output="screen">
+        <param name="~config" value="$(arg config_file)"/>
+    </node>
+</launch>-->
+<launch>
+    <!-- Load the YAML file with parameters -->
+    <rosparam command="load" file="$(find cps_ugv_formation_control)/config/mpc_ros1_rbt1.yaml" />
+
+    <!-- Define the launch description -->
+    <node
+        pkg="cps_ugv_formation_control"
+        type="mpc_ros1_rbt1_node"
+        name="mpc_ros1_rbt1_node"
+        output="screen"/>
+</launch>

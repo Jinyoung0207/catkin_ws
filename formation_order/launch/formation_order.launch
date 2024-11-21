@@ -1,0 +1,8 @@
+<launch>
+    <arg name="rviz"       default="false"/>
+    <rosparam file="$(find formation_order)/config/param.yaml" command="load" />
+    <node pkg="formation_order" type="formation_order_node" name="formation_order_node" output="screen" />
+    <group if="$(arg rviz)">
+        <node name="rviz" pkg="rviz" type="rviz" args="-d $(find formation_order)/rviz/formation_rviz.rviz" />
+    </group>
+</launch>

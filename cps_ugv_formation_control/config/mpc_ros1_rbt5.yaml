@@ -1,0 +1,10 @@
+mpc_ros1_rbt5_node:
+  N: 30
+  dt: 0.1
+  v_max: 0.3
+  v_min: 0.0
+  ref_topic_name: '/UGV5/ref_trajectory'
+  pose_topic_name: '/UGV5/odom_ground_truth'
+  cmd_topic_name: '/UGV5/jackal_velocity_controller/cmd_vel'
+  pre_topic_name: '/UGV5/pre_path'
+  frame_id: "map"

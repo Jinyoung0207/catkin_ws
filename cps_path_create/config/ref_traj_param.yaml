@@ -1,0 +1,16 @@
+Hz: 10.0
+N: 60
+dt: 0.1
+v_mean: 0.2
+global_path_topic_name: "/cps_global_path"
+lead_ugv_ref_topic_name: "/UGV1/ref_trajectory"
+follow_1_ugv_ref_topic_name: "/UGV2/ref_trajectory"
+follow_2_ugv_ref_topic_name: "/UGV3/ref_trajectory"
+follow_3_ugv_ref_topic_name: "/UGV4/ref_trajectory"
+follow_4_ugv_ref_topic_name: "/UGV5/ref_trajectory"
+lead_uav_ref_topic_name: "/UAV1/ref_trajectory"
+follow_1_uav_ref_topic_name: "/UAV2/ref_trajectory"
+follow_2_uav_ref_topic_name: "/UAV3/ref_trajectory"
+follow_3_uav_ref_topic_name: "/UAV4/ref_trajectory"
+follow_4_uav_ref_topic_name: "/UAV5/ref_trajectory"
+frame_id: "map"

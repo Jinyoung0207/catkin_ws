@@ -1,0 +1,11 @@
+robot: 'UGV3'
+mpc_ros1_rbt1_node:
+  N: 30
+  dt: 0.1
+  v_max: 0.3
+  v_min: 0.0
+  ref_topic_name: '/UGV3/ref_trajectory'
+  pose_topic_name: '/UGV3/pose'
+  cmd_topic_name: '/UGV3/cmd_vel'
+  pre_topic_name: '/UGV3/pre_path'
+  frame_id: 'map'

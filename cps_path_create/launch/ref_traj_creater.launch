@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Launch the node -->
+    <node pkg="cps_path_create" type="ref_path_creater" name="ref_path_creater" output="screen" >
+        <rosparam file="$(find cps_path_create)/config/ref_traj_param.yaml" command="load"/>
+    </node>
+</launch>

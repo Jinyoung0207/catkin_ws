@@ -1,0 +1,11 @@
+robot: 'UGV1'
+mpc_ros1_rbt1_node:
+  N: 30
+  dt: 0.1
+  v_max: 0.3
+  v_min: 0.0
+  ref_topic_name: '/UGV1/ref_trajectory'
+  pose_topic_name: '/UGV1/odom_ground_truth'
+  cmd_topic_name: '/UGV1/jackal_velocity_controller/cmd_vel'
+  pre_topic_name: '/UGV1/pre_path'
+  frame_id: 'map'

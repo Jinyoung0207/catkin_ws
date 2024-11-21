@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Argument Definitions -->
+    <arg name="ns" default="bigbot"/>
+    <arg name="config" default="base"/>
+    <arg name="config_id" default="1"/>
+    <arg name="use_sim_time" default="true"/>
+  
+    <!-- Gazebo Server -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+      <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    </include>
+  
+    <!-- Define Robot Names and Poses -->
+    <group ns="leader">
+      <param name="robot_description" command="$(find xacro)/xacro '$(find jackal_description)/urdf/jackal.urdf.xacro' 'namespace:=leader' 'config_id:=1'"/>
+      <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model leader -x 0 -y 0 -z 0.01"/>
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+        <param name="use_sim_time" value="$(arg use_sim_time)"/>
+        <param name="robot_description" command="$(find xacro)/xacro '$(find jackal_description)/urdf/jackal.urdf.xacro' 'namespace:=leader' 'config_id:=1'"/>
+      </node>
+    </group>
+  
+    <group ns="robot2">
+      <param name="robot_description" command="$(find xacro)/xacro '$(find jackal_description)/urdf/jackal.urdf.xacro' 'namespace:=robot2' 'config_id:=2'"/>
+      <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model robot2 -x 0 -y 2.0 -z 0.01"/>
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+        <param name="use_sim_time" value="$(arg use_sim_time)"/>
+        <param name="robot_description" command="$(find xacro)/xacro '$(find jackal_description)/urdf/jackal.urdf.xacro' 'namespace:=robot2' 'config_id:=2'"/>
+      </node>
+    </group>
+  
+    <group ns="robot1">
+      <param name="robot_description" command="$(find xacro)/xacro '$(find jackal_description)/urdf/jackal.urdf.xacro' 'namespace:=robot1' 'config_id:=3'"/>
+      <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model robot1 -x 0 -y -2.0 -z 0.01"/>
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+        <param name="use_sim_time" value="$(arg use_sim_time)"/>
+        <param name="robot_description" command="$(find xacro)/xacro '$(find jackal_description)/urdf/jackal.urdf.xacro' 'namespace:=robot1' 'config_id:=3'"/>
+      </node>
+    </group>
+  
+    <group ns="robot4">
+      <param name="robot_description" command="$(find xacro)/xacro '$(find jackal_description)/urdf/jackal.urdf.xacro' 'namespace:=robot4' 'config_id:=4'"/>
+      <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model robot4 -x 0 -y 4.0 -z 0.01"/>
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+        <param name="use_sim_time" value="$(arg use_sim_time)"/>
+        <param name="robot_description" command="$(find xacro)/xacro '$(find jackal_description)/urdf/jackal.urdf.xacro' 'namespace:=robot4' 'config_id:=4'"/>
+      </node>
+    </group>
+  
+    <group ns="robot3">
+      <param name="robot_description" command="$(find xacro)/xacro '$(find jackal_description)/urdf/jackal.urdf.xacro' 'namespace:=robot3' 'config_id:=5'"/>
+      <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model robot3 -x 0 -y -4.0 -z 0.01"/>
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+        <param name="use_sim_time" value="$(arg use_sim_time)"/>
+        <param name="robot_description" command="$(find xacro)/xacro '$(find jackal_description)/urdf/jackal.urdf.xacro' 'namespace:=robot3' 'config_id:=5'"/>
+      </node>
+    </group>
+  
+    <!-- Initial Pose Settings -->
+    <node name="initial_pose_leader" pkg="rostopic" type="rostopic" args="pub -1 /leader/initialpose geometry_msgs/PoseWithCovarianceStamped '{header: {frame_id: map}, pose: {pose: {position: {x: 0, y: 0, z: 0.1}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}}'"/>
+    <node name="initial_pose_robot2" pkg="rostopic" type="rostopic" args="pub -1 /robot2/initialpose geometry_msgs/PoseWithCovarianceStamped '{header: {frame_id: map}, pose: {pose: {position: {x: 0, y: 2.0, z: 0.1}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}}'"/>
+    <node name="initial_pose_robot1" pkg="rostopic" type="rostopic" args="pub -1 /robot1/initialpose geometry_msgs/PoseWithCovarianceStamped '{header: {frame_id: map}, pose: {pose: {position: {x: 0, y: -2.0, z: 0.1}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}}'"/>
+    <node name="initial_pose_robot4" pkg="rostopic" type="rostopic" args="pub -1 /robot4/initialpose geometry_msgs/PoseWithCovarianceStamped '{header: {frame_id: map}, pose: {pose: {position: {x: 0, y: 4.0, z: 0.1}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}}'"/>
+    <node name="initial_pose_robot3" pkg="rostopic" type="rostopic" args="pub -1 /robot3/initialpose geometry_msgs/PoseWithCovarianceStamped '{header: {frame_id: map}, pose: {pose: {position: {x: 0, y: -4.0, z: 0.1}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}}'"/>
+  </launch>
+  

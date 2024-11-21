@@ -1,0 +1,13 @@
+mpc_ros1_jackal_node:
+  N: 30
+  dt: 0.1
+  v_max: 0.3
+  v_min: 0.0
+  ref_topic_name: '/leader/ref_trajectory'
+  #pose_topic_name: '/odom'
+  pose_topic_name: '/odometry/filtered'
+  #pose_topic_name: '/jackal_velocity_controller/odom'
+  #cmd_topic_name: '/jackal_velocity_controller/cmd_vel'
+  #pose_topic_name: '/gazebo/model_states'
+  cmd_topic_name: '/cmd_vel'
+  pre_topic_name: '/leader/pre_path'
